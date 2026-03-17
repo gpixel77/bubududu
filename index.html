@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Surat Cinta Spesial ❤️</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --pink-bg: #ffe4e9;
+        --pink-paper: #fff5f7;
+        --pink-accent: #ff8fa3;
+        --pink-dark: #c9184a;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--pink-bg);
+        font-family: "Quicksand", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow-x: hidden;
+        padding: 15px;
+        box-sizing: border-box;
+      }
+
+      .leaf {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        background: #ffb3c1;
+        border-radius: 10px 0 10px 0;
+        animation: fall linear infinite;
+        z-index: -1;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(-10vh) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(110vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .letter-card {
+        width: 100%;
+        max-width: 380px;
+        background: var(--pink-paper);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(201, 24, 74, 0.2);
+        text-align: center;
+        border: 2px solid white;
+        position: relative;
+        z-index: 10;
+        box-sizing: border-box;
+      }
+
+      #gallery-slide {
+        display: none;
+      }
+
+      .gif-slot {
+        width: 100%;
+        max-width: 180px;
+        aspect-ratio: 1/1;
+        margin: 0 auto 20px;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+        overflow: hidden;
+      }
+
+      .gif-slot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .photo-container {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 20px;
+        border-radius: 15px;
+        overflow: hidden;
+        position: relative;
+        border: 3px solid white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .slide-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+
+      .slide-photo.active {
+        opacity: 1;
+      }
+
+      h1 {
+        font-family: "Dancing Script", cursive;
+        color: var(--pink-dark);
+        margin: 10px 0;
+        font-size: 1.8rem;
+      }
+
+      .message {
+        font-size: 15px;
+        color: #555;
+        line-height: 1.6;
+        min-height: 80px;
+        margin-bottom: 15px;
+      }
+
+      #lyrics-container {
+        font-size: 14px;
+        color: var(--pink-dark);
+        font-style: italic;
+        min-height: 45px;
+        display: none;
+        padding: 15px 10px;
+        border-top: 1px dashed var(--pink-accent);
+        margin-top: 10px;
+      }
+
+      #lyrics-text {
+        display: inline-block;
+        transition: opacity 0.5s ease-in-out;
+        opacity: 0;
+      }
+
+      #open-btn,
+      #next-btn {
+        background: var(--pink-accent);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-weight: bold;
+        margin-top: 20px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(255, 143, 163, 0.4);
+        transition: 0.3s;
+        font-size: 1rem;
+      }
+
+      #next-btn {
+        display: none;
+      }
+
+      #open-btn:hover,
+      #next-btn:hover {
+        transform: scale(1.05);
+        background: var(--pink-dark);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="letter-card" id="card">
+      <div class="gif-slot">
+        <img
+          id="bubu-img"
+          src="dudu-bubu.gif"
+          alt="Dudu & Bubu"
+          onerror="
+            this.src =
+              'https://media.tenor.com/7vYp7vGZ8d8AAAAi/bubu-dudu-sseeyall.gif'
+          "
+        />
+      </div>
+      <h1 id="title">Halo Timut!</h1>
+      <p class="message" id="text-surat">
+        Ada pesan rahasia di dalam sini... Klik tombol di bawah untuk
+        membacanya.
+      </p>
+
+      <div id="lyrics-container">
+        <span id="lyrics-text"></span>
+      </div>
+
+      <button id="open-btn" onclick="startLetter()">Buka Surat ❤️</button>
+      <button id="next-btn" onclick="showGallery()">
+        Lihat Kenangan Kita ✨
+      </button>
+    </div>
+
+    <div class="letter-card" id="gallery-slide">
+      <div class="gif-slot">
+        <img
+          src="budu.gif"
+          alt="Gallery Gif"
+          onerror="
+            this.src =
+              'https://media.tenor.com/XpA_vT_9L38AAAAi/bubu-dudu-love.gif'
+          "
+        />
+      </div>
+      <h1>Our Moments ✨</h1>
+      <div class="photo-container">
+        <img src="1.jpeg" class="slide-photo active" />
+        <img src="2.jpeg" class="slide-photo" />
+        <img src="3.jpeg" class="slide-photo" />
+        <img src="4.jpeg" class="slide-photo" />
+        <img src="5.jpeg" class="slide-photo" />
+      </div>
+      <p class="message" style="min-height: auto">
+        Terima kasih sudah selalu ada di sisiku. I love you more!
+      </p>
+    </div>
+
+    <audio id="loveAudio" loop>
+      <source src="lagusurat.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script>
+      const audio = document.getElementById("loveAudio");
+      const textElement = document.getElementById("text-surat");
+      const gifElement = document.getElementById("bubu-img");
+      const lyricsBox = document.getElementById("lyrics-container");
+      const lyricsText = document.getElementById("lyrics-text");
+      const card = document.getElementById("card");
+      const gallerySlide = document.getElementById("gallery-slide");
+      const nextBtn = document.getElementById("next-btn");
+
+      const fullMessage =
+        "Target kamu adalah target kita juga. Apapun yang terjadi, aku bakal selalu ada di garda terdepan buat support kamu. Kita akan tetap bersama dan hadapi segalanya bareng-bareng karena gak ada yang mustahil kalau kita lakuin berdua. Terus melangkah ya, aku bangga banget sama kamu. I love you more than words can say! 🌸🧸💖";
+
+      const lyrics = [
+        "Late One Night...",
+        "You Dug Me Out of My Grave ✨",
+        "And Saved My Heart 🤍",
+        "From The Fate of Ophelia 🌹",
+        "Keep It One Hundred...",
+        "On The Land 🌈",
+        "The Sea, The Sky 🌊☁️",
+        "Pledge Allegiance To Your Hands 🤝",
+        "Your Team, Your Vibes 🌟",
+        "Don't Care Where You've Been 🌍",
+        "Cause Now You're Mine 💕",
+        "It's Bout To Be The Sleepless Nights 🌙",
+        "You've Been Dreaming of 🌠",
+        "The Fate of Ophelia 🌹",
+        "",
+      ];
+      const lyricDurations = [
+        1000, 1300, 1300, 2800, 1500, 1500, 1000, 1100, 1400, 1100, 1500, 1200,
+        2600, 2300, 600,
+      ];
+
+      let lyricIndex = 0;
+      let isPlaying = false;
+      let lyricsActive = true; // Kontrol lirik
+
+      function runLyrics() {
+        if (!isPlaying || !lyricsActive) return; // Berhenti jika lirik dinonaktifkan
+
+        lyricsText.style.opacity = 1;
+
+        setTimeout(() => {
+          if (!lyricsActive) return;
+          lyricsText.innerText = lyrics[lyricIndex];
+          lyricsText.style.opacity = 1;
+
+          let waitTime = lyricDurations[lyricIndex];
+          lyricIndex = (lyricIndex + 1) % lyrics.length;
+
+          setTimeout(runLyrics, waitTime);
+        }, 500);
+      }
+
+      function startLetter() {
+        gifElement.src = "bubu.gif";
+        audio
+          .play()
+          .then(() => {
+            isPlaying = true;
+            lyricsBox.style.display = "block";
+            runLyrics();
+          })
+          .catch((err) => console.log("Audio error"));
+
+        document.getElementById("open-btn").style.display = "none";
+        document.getElementById("title").innerText = "For Timut 💌";
+        textElement.innerHTML = "";
+
+        let i = 0;
+        function type() {
+          if (i < fullMessage.length) {
+            textElement.innerHTML += fullMessage.charAt(i);
+            i++;
+            setTimeout(type, 50);
+          } else {
+            nextBtn.style.display = "inline-block";
+          }
+        }
+        type();
+        setInterval(createLeaf, 300);
+      }
+
+      function showGallery() {
+        // Hentikan proses teks lirik
+        lyricsActive = false;
+
+        card.style.opacity = "0";
+        setTimeout(() => {
+          card.style.display = "none";
+          gallerySlide.style.display = "block";
+          gallerySlide.style.opacity = "0";
+
+          setTimeout(() => {
+            gallerySlide.style.opacity = "1";
+            startSlideshow();
+          }, 50);
+        }, 500);
+      }
+
+      function startSlideshow() {
+        const photos = document.querySelectorAll(".slide-photo");
+        let currentPhoto = 0;
+        setInterval(() => {
+          photos[currentPhoto].classList.remove("active");
+          currentPhoto = (currentPhoto + 1) % photos.length;
+          photos[currentPhoto].classList.add("active");
+        }, 3000);
+      }
+
+      function createLeaf() {
+        const leaf = document.createElement("div");
+        leaf.classList.add("leaf");
+        leaf.style.left = Math.random() * 100 + "vw";
+        leaf.style.animationDuration = Math.random() * 3 + 2 + "s";
+        document.body.appendChild(leaf);
+        setTimeout(() => leaf.remove(), 5000);
+      }
+    </script>
+  </body>
+</html>
